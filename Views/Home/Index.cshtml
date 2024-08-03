@@ -2,7 +2,33 @@
     ViewData["Title"] = "Home Page";
 }
 
+@using testMvc.Models;
+@model RandomNumModel;
+
 <div class="text-center">
-    <h1 class="display-4">Home</h1>
-    <h2>@ViewData["NewRandom"]</h2>
+  <h1 class="display-4">Home</h1>
+</div>
+
+<div>
+  <h4 class="mb-3">
+    Guess number beetween @ViewBag.NumberFrom and @ViewBag.NumberTo
+  </h4>
+  <form  method="post" class="w-25">
+    <div>
+      <label>Type num</label>
+      <input class="form-control"t type="number" asp-for="RandomNum" />
+      @if (TempData.ContainsKey("StartGame") && TempData["StartGame"] != null)
+      {
+      @* <p class="mt-2">@ViewData["Message"]</p> *@
+        @* <p class="mt-2 @(Model.IsErrorMsg ? "text-danger" : "text-success")">@ViewData["Message"]</p> *@
+         @* <p class="mt-2 @(Model?.IsErrorMsg ?? true ? "text-danger" : "text-success")">@ViewData["Message"]</p> *@
+        <p class="mt-2">@ViewData["Message"]</p>
+      }
+    </div>   
+    <button asp-controller="Home" asp-action="Index" type="submit" class="btn btn-primary mt-2">Submit</button>
+    @if (TempData.ContainsKey("PlayerWin") && TempData["PlayerWin"] != null)
+    {
+    <button asp-controller="Home" asp-action="Reset" type="submit" class="btn btn-primary mt-2">Play again</button>
+    }
+  </form>
 </div>
