@@ -27,6 +27,7 @@ public class HomeController : Controller
     public IActionResult Index(RandomNumModel model)
     {
       bool isStored = string.IsNullOrEmpty(HttpContext.Session.GetString("StoredRandom"));
+      model.IsErrorMsg = true;
 
       if (isStored)
       {
@@ -82,7 +83,7 @@ public class HomeController : Controller
       ViewBag.NumberFrom = NumberFrom;
       ViewBag.NumberTo = NumberTo;
 
-      return View();
+      return View(model);
     }
 
     public IActionResult Reset()
