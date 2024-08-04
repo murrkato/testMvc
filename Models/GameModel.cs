@@ -14,6 +14,6 @@ public class GameModel
   public bool IsErrorMsg {get; set;}
   public string? Message {get; set;}
 
-  public enum RangeKeys {From, To};
-  public int[] ReducedRange = new int[2]; 
+  public enum ButtonNames {Play, Reset}
+  public ButtonNames ButtonClicked {get; set;}
 }
